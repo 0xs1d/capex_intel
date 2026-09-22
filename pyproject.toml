@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "medical-capex-commercial-intelligence"
+version = "0.1.0"
+description = "A modular, production-oriented pipeline for medical CAPEX commercial intelligence."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "polars>=1.5,<2",
+  "pydantic-settings>=2.4,<3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3,<9", "ruff>=0.6,<1", "mypy>=1.11,<2"]
+
+[project.scripts]
+capex-pipeline = "capex_intelligence.cli:main"
+capex-generate = "capex_intelligence.generator_cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+check_untyped_defs = true
+disallow_untyped_defs = true
+no_implicit_optional = true

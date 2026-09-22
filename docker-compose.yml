@@ -1,0 +1,10 @@
+services:
+  capex-pipeline:
+    build: .
+    image: medical-capex-commercial-intelligence:local
+    volumes:
+      - ./artifacts:/app/artifacts
+      - ./data/generated:/app/data/generated
+    environment:
+      CAPEX_OUTPUT_DIR: /app/artifacts
+      CAPEX_SOURCE_DIR: /app/data/generated
